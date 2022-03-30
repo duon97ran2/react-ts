@@ -1,0 +1,18 @@
+.site-layout-content {
+  min-height: 100vh;
+  padding: 24px;
+  background: #fff;
+  margin-bottom: 80px;
+}
+.ant-layout-header,.ant-layout-footer{
+  background-color: #fff !important;
+}
+#components-layout-demo-side .logo {
+  height: 32px;
+  margin: 16px;
+  background: rgba(255, 255, 255, 0.3);
+}
+
+.site-layout .site-layout-background {
+  background: #fff;
+}
