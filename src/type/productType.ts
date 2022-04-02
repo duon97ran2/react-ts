@@ -3,8 +3,10 @@ export type ProductType = {
   _id?: string,
   name: string,
   price: number,
-  image: string,
   discount: number,
+  image: Object[],
   description: string,
+  slug: string,
+  stock: number,
   category: Array<CategoryType>
 }

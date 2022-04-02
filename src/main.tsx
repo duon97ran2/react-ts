@@ -13,7 +13,8 @@ import "antd/dist/antd.variable.css";
 
 ConfigProvider.config({
   theme: {
-    primaryColor: "#fa541c",
+    primaryColor: "#00C6CF",
+    infoColor: "#7FD1AE"
   },
 });
 
@@ -21,12 +22,10 @@ let persistor = persistStore(store);
 
 
 ReactDOM.render(
-  <BrowserRouter>
-    <Provider store={store}>
-      <PersistGate loading={null} persistor={persistor}>
-        <App />
-      </PersistGate>
-    </Provider>
-  </BrowserRouter>,
+  <Provider store={store}>
+    <PersistGate loading={null} persistor={persistor}>
+      <App />
+    </PersistGate>
+  </Provider>,
   document.getElementById('root')
 )

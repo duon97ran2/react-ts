@@ -10,11 +10,7 @@ const { Meta } = Card;
 type Props = {
 }
 const ProductPanel = (props: Props) => {
-  const dispatch = useAppDispatch();
   const { products } = useAppSelecter((state) => state.productReducer);
-  useEffect(() => {
-    dispatch(fetchAsyncProductList());
-  }, [dispatch])
   return (
     <div>
       <div className="site-card-wrapper">

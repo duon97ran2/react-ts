@@ -50,7 +50,16 @@ gap: 20px;
 `;
 
 export const StyledLogo = styled.div`
-& img {
+display:flex;
+flex-direction:row;
+& h2 {
+  font-weight:bold;
+  font-size:30px;
+  background:linear-gradient(263deg, rgba(67,86,205,1) 0%, rgba(0,196,196,1) 0%, rgba(0,212,255,1) 100%) ;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+& svg {
 width: 100%;
 height: 100%;
 object-fit: cover;
@@ -99,3 +108,16 @@ margin-bottom: 30px;
 border-bottom: 1px solid var(--ant-primary-color);
 padding-bottom: 15px;
 `
+export const StyledActionTitle = styled.h2`
+margin-bottom:40px;
+text-align:center
+`
+export const LoadingWrapper = styled.div`
+    position: fixed;
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #ffffff;
+`;

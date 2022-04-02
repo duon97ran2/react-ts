@@ -1,12 +1,11 @@
-import { fetchAsyncProductList } from './productThunk';
+import { fetchAsyncProductList, AsyncCreateProduct, AsyncRemoveProduct, AsyncGetProduct } from './productThunk';
 import { ProductType } from '../../type/productType';
 import { createSlice } from '@reduxjs/toolkit';
-import { build } from 'vite';
 
 
 type ProductState = {
   products: ProductType[],
-  currentProduct: ProductType[] | null,
+  currentProduct: ProductType | null,
   isFetching: boolean,
   errorMessage: string | undefined,
 }
@@ -35,7 +34,40 @@ const productSlice = createSlice({
     builder.addCase(fetchAsyncProductList.rejected, (state, action) => {
       state.isFetching = false;
       state.errorMessage = action.payload;
-    })
+    });
+    builder.addCase(AsyncCreateProduct.pending, (state,) => {
+      state.isFetching = true;
+    });
+    builder.addCase(AsyncCreateProduct.fulfilled, (state, action) => {
+      state.isFetching = false;
+      state.products.push(action.payload);
+    });
+    builder.addCase(AsyncCreateProduct.rejected, (state, action) => {
+      state.isFetching = false;
+      state.errorMessage = action.payload;
+    });
+    builder.addCase(AsyncRemoveProduct.pending, (state, action) => {
+      state.isFetching = true;
+    });
+    builder.addCase(AsyncRemoveProduct.fulfilled, (state, action) => {
+      state.isFetching = false;
+      state.products = state.products.filter(item => item._id !== action.payload._id);
+    });
+    builder.addCase(AsyncRemoveProduct.rejected, (state, action) => {
+      state.isFetching = false;
+      state.errorMessage = action.payload;
+    });
+    builder.addCase(AsyncGetProduct.pending, (state) => {
+      state.isFetching = true;
+    });
+    builder.addCase(AsyncGetProduct.fulfilled, (state, action) => {
+      state.isFetching = false;
+      state.currentProduct = action.payload;
+    });
+    builder.addCase(AsyncGetProduct.rejected, (state, action) => {
+      state.isFetching = false;
+      state.errorMessage = action.payload;
+    });
   }
 });
 
