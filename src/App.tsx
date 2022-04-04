@@ -21,6 +21,8 @@ import { fetchAsyncProductList } from './features/products/productThunk'
 import { AsyncFetchCategoryList } from './features/categories/categoryThunk'
 import { LoadingWrapper } from './components/StyleComponent'
 import { Spin } from 'antd'
+import PrivateRouter from './components/PrivateRouter'
+import Search from './pages/client/Search'
 
 
 
@@ -37,7 +39,8 @@ function App() {
   useEffect(() => {
     dispatch(fetchAsyncProductList());
     dispatch(AsyncFetchCategoryList());
-  }, [dispatch])
+  }, [dispatch]);
+  const { userInfo } = useAppSelecter(state => state.authReducer);
 
   return (
     <Suspense fallback={Loading}>
@@ -50,10 +53,12 @@ function App() {
               <Route index element={<Products />} />
               <Route path=':id' element={<ProductDetail />} />
             </Route>
+            <Route path='search/:text' element={<Search />} />
           </Route>
           <Route path='login' element={<Login />} />
           <Route path='register' element={<Register />} />
-          <Route path='admin' element={<AdminLayout />}>
+
+          <Route path='admin' element={<PrivateRouter user={userInfo} role={1}><AdminLayout /></PrivateRouter>}>
             <Route index element={<Navigate to="dashboard" />} />
             <Route path='dashboard' element={<Dashboard />} />
             <Route path='products'>

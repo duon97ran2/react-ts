@@ -55,7 +55,7 @@ const ProductList = (props: Props) => {
     }
   ];
   const confirmDelete = (id: string | undefined) => {
-    dispatch(AsyncRemoveProduct(id)).unwrap().then((data) => { message.success("Delete product success") }).catch((error) => { message.error(error.message) });
+    dispatch(AsyncRemoveProduct(id)).unwrap().then((data) => { message.success("Delete product success") }).catch((error) => { errorMessage ? message.error(errorMessage) : message.error(error.message) });
   }
   const productData = products.map((item, index) => {
     return {

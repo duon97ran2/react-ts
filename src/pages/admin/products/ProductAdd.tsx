@@ -25,7 +25,7 @@ const ProductAdd = (props: ProductProps) => {
     console.log(post.image)
     post.image = post.image.fileList;
     console.log(post);
-    dispatch(AsyncCreateProduct(post)).unwrap().then(() => { message.success("Add product success", 2, () => { navigate("/admin/products") }) }).catch((error) => message.error(error.message));
+    dispatch(AsyncCreateProduct(post)).unwrap().then(() => { message.success("Add product success", 2, () => { navigate("/admin/products") }) }).catch((error) => errorMessage ? message.error(errorMessage) : message.error(error.message));
   };
   const onFailedAdd = () => {
     message.error('Input fields are required');
@@ -49,7 +49,7 @@ const ProductAdd = (props: ProductProps) => {
 
 
       }}>
-        <ImageUpload />
+        <ImageUpload imageList={[]} />
         <Form.Item name="name" label="Name" rules={[{ required: true, min: 5 }]} >
           <Input />
         </Form.Item>

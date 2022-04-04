@@ -4,14 +4,14 @@ import { PlusOutlined } from '@ant-design/icons';
 import { UploadFile } from 'antd/lib/upload/interface';
 import axios from 'axios';
 
-type Props = {}
+type Props = { imageList: UploadFile<any>[] }
 
 
 const ImageUpload = (props: Props) => {
   const [previewVisible, setPreviewVisible] = React.useState<boolean>(false);
   const [previewImage, setPreviewImage] = React.useState<string>('');
   const [previewTitle, setPreviewTitle] = React.useState<string>('');
-  const [fileList, setFileList] = React.useState<Array<UploadFile>>([]);
+  const [fileList, setFileList] = React.useState<Array<UploadFile>>(props.imageList);
   // function getBase64(file: any) {
   //   return new Promise((resolve, reject) => {
   //     const reader = new FileReader();
@@ -38,6 +38,7 @@ const ImageUpload = (props: Props) => {
       const { data } = await axios.post(url, formData, {
         headers: {
           "content-type": "application/x-www-formencoded",
+          'X-Requested-With': 'XMLHttpRequest'
         },
         onUploadProgress: e => {
           onProgress({ percent: (e.loaded / e.total) * 100 })
@@ -70,22 +71,25 @@ const ImageUpload = (props: Props) => {
     setPreviewImage(file.url);
     setPreviewTitle(file.name);
   };
+  React.useEffect(() => {
+    setFileList(props.imageList);
+  }, [props.imageList])
 
-  return (
+  return (<>
     <Form.Item name='image' rules={[{ required: true }]} style={{ display: "flex", alignItems: "center", justifyContent: 'center' }} >
       <Upload listType='picture-card' fileList={fileList} customRequest={dummyrequest} maxCount={8} onChange={handleChange} onPreview={handlePreview}>
         {fileList.length >= 8 ? null : uploadButton}
 
-        <Modal
-          visible={previewVisible}
-          title={previewTitle}
-          footer={null}
-          onCancel={handleCancel}
-        >
-          <img src={previewImage} style={{ width: '100%' }} alt={previewTitle} />
-        </Modal>
       </Upload>
     </Form.Item>
+    <Modal
+      visible={previewVisible}
+      title={previewTitle}
+      footer={null}
+      onCancel={handleCancel}
+    >
+      <img src={previewImage} style={{ width: '100%' }} alt={previewTitle} />
+    </Modal></>
   )
 }
 

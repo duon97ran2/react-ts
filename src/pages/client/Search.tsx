@@ -1,23 +1,39 @@
-import { Card, Row, Col, Tooltip, Divider } from 'antd'
-import React, { useEffect } from 'react'
-import { EllipsisOutlined, HeartFilled, ShoppingFilled, ShoppingTwoTone } from '@ant-design/icons';
-import { useAppDispatch, useAppSelecter } from '../app/hooks';
-import { fetchAsyncProductList } from '../features/products/productThunk';
+import { Checkbox, Col, Layout, Row, Slider, Card, Tooltip } from 'antd'
+import React, { useEffect, useState } from 'react'
+import { useDispatch } from 'react-redux';
+import { useParams } from 'react-router-dom';
+import { useAppDispatch, useAppSelecter } from '../../app/hooks';
+import { AsyncSearchProduct } from '../../features/products/productThunk';
 import { useNavigate } from 'react-router-dom';
+import { EllipsisOutlined, HeartFilled, ShoppingTwoTone } from '@ant-design/icons';
 
 const { Meta } = Card;
 
 
-type Props = {
-}
-const ProductPanel = (props: Props) => {
-  const { products } = useAppSelecter((state) => state.productReducer);
-  const navigate = useNavigate()
-  return (
+
+type Props = {}
+
+const Search = (props: Props) => {
+  const { categories } = useAppSelecter(state => state.categoryReducer);
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { text } = useParams();
+  const [data, setData] = useState<any>([]);
+  useEffect(() => {
+    dispatch(AsyncSearchProduct(text)).then((data) => { setData(data.payload) });
+  }, [text])
+  return (<>
+    <h1>Search result for {text}</h1>
+    <Row gutter={20}>
+      <Col span={8}><h3 style={{ marginBottom: "30px" }}>Price range:</h3>
+        <Slider style={{ marginBottom: "30px" }} range defaultValue={[20, 50]} /></Col>
+      <Col span={8}><h3 style={{ marginBottom: "30px" }}>Category:</h3></Col>
+      <Col span={8}></Col>
+    </Row>
     <div>
       <div className="site-card-wrapper">
         <Row gutter={[30, 30]} >
-          {products.slice(0, 6).map((item, index) => <Col span={8} key={index + 1}>
+          {data.map((item, index) => <Col span={8} key={index + 1}>
             <Card title={item.name} onClick={() => { navigate(`products/${item._id}`) }} hoverable
               style={{ width: "100%", height: "100%" }}
               cover={
@@ -51,7 +67,9 @@ const ProductPanel = (props: Props) => {
         </Row>
       </div >
     </div >
+
+  </>
   )
 }
 
-export default ProductPanel
+export default Search

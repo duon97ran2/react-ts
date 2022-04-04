@@ -8,5 +8,6 @@ export type ProductType = {
   description: string,
   slug: string,
   stock: number,
+  view: number,
   category: Array<CategoryType>
 }

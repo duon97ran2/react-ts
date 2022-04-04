@@ -21,7 +21,7 @@ const AdminLayout = (props: Props) => {
         <Layout className="site-layout">
           <Header className="site-layout-background" style={{ padding: "0 20px" }}>
             <StyledHeader>
-              <StyledLogo><h2>SwitchIt!</h2> </StyledLogo>
+              <Logo />
               <StyledNav>
                 <li><Dropdown overlay={<Menu>
                   <Menu.Item>

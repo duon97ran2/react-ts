@@ -52,17 +52,14 @@ gap: 20px;
 export const StyledLogo = styled.div`
 display:flex;
 flex-direction:row;
-& h2 {
+flex-shrink: 1; 
+cursor:pointer;
+& h2{
   font-weight:bold;
   font-size:30px;
   background:linear-gradient(263deg, rgba(67,86,205,1) 0%, rgba(0,196,196,1) 0%, rgba(0,212,255,1) 100%) ;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-}
-& svg {
-width: 100%;
-height: 100%;
-object-fit: cover;
 }
 `
 export const StyledSlide = styled.div`
@@ -121,3 +118,12 @@ export const LoadingWrapper = styled.div`
     justify-content: center;
     background-color: #ffffff;
 `;
+export const styledCarouselItem = styled.div`
+  & img {
+    width:100%,
+    heigth:100%,
+    max-width: 660px;
+    max-height: 660px;
+    object-fit:cover;
+  }
+`
