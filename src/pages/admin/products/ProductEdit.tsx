@@ -30,6 +30,7 @@ const ProductEdit = (props: ProductProps) => {
     post._id = id;
     dispatch(AsyncUpdateProduct(post)).unwrap().then(() => { message.success("Update product success", 2, () => { navigate("/admin/products") }) }).catch((error) => errorMessage ? message.error(errorMessage) : message.error(error.message));
   };
+
   const onFailedAdd = () => {
     message.error('Input fields are required');
   };

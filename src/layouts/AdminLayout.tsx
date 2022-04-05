@@ -39,7 +39,7 @@ const AdminLayout = (props: Props) => {
                     Logout
                   </Menu.Item>
                 </Menu>} placement="bottom" arrow={{ pointAtCenter: true }}>
-                  <Avatar src={<Image src="https://joeschmoe.io/api/v1/random" style={{ width: 32 }} />} />
+                  <Avatar src={<Image src={userInfo?.image?.url ?? "https://joeschmoe.io/api/v1/random"} style={{ width: 32 }} />} />
                 </Dropdown></li>
               </StyledNav>
             </StyledHeader>

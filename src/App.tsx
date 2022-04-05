@@ -23,6 +23,9 @@ import { LoadingWrapper } from './components/StyleComponent'
 import { Spin } from 'antd'
 import PrivateRouter from './components/PrivateRouter'
 import Search from './pages/client/Search'
+import UserList from './pages/admin/users/UserList'
+import UserAdd from './pages/admin/users/UserAdd'
+import UserUpdate from './pages/admin/users/UserUpdate'
 
 
 
@@ -65,6 +68,11 @@ function App() {
               <Route index element={<ProductList />} />
               <Route path='add' element={<ProductAdd />} />
               <Route path=':id/edit' element={<ProductEdit />} />
+            </Route>
+            <Route path='users'>
+              <Route index element={<UserList />} />
+              <Route path='add' element={<UserAdd />} />
+              <Route path=':id/edit' element={<UserUpdate />} />
             </Route>
           </Route>
         </Routes>

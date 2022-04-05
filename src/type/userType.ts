@@ -1,7 +1,8 @@
 export type UserType = {
-  _id?: string,
+  _id?: string | undefined,
   username: string,
   password: string,
   email: string,
-  role: number
+  role: number,
+  image: Object,
 }

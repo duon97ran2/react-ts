@@ -3,6 +3,7 @@ import { combineReducers } from "@reduxjs/toolkit";
 import attributeReducer from "../features/attributes/attributeSlice";
 import productReducer from "../features/products/productSlide"
 import authReducer from "../features/auths/authSlice";
+import userReducer from "../features/users/userSlice";
 import categoryReducer from "../features/categories/categorySlide"
 import storage from "redux-persist/lib/storage";
 
@@ -15,7 +16,8 @@ const reducers = combineReducers({
   attributeReducer,
   productReducer,
   authReducer,
-  categoryReducer
+  categoryReducer,
+  userReducer
 });
 
 const rootReducer = persistReducer(persistConfig, reducers);

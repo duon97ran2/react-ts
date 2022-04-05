@@ -1,5 +1,5 @@
 import { Button, Form, Input, InputNumber, message, Select } from 'antd';
-import React from 'react'
+import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelecter } from '../../../app/hooks';
 import ImageUpload from '../../../components/ImageUpload';
@@ -17,14 +17,13 @@ const ProductAdd = (props: ProductProps) => {
   const { categories } = useAppSelecter(state => state.categoryReducer);
   const [form] = Form.useForm<ProductType>();
   const { errorMessage } = useAppSelecter(state => state.productReducer);
+  const [fileList, setFileList] = useState<any>([]);
   const onReset = () => {
     form.resetFields();
-    //setFileList([]);
+    setFileList([]);
   };
   const onFinishAdd = (post: ProductType) => {
-    console.log(post.image)
     post.image = post.image.fileList;
-    console.log(post);
     dispatch(AsyncCreateProduct(post)).unwrap().then(() => { message.success("Add product success", 2, () => { navigate("/admin/products") }) }).catch((error) => errorMessage ? message.error(errorMessage) : message.error(error.message));
   };
   const onFailedAdd = () => {
@@ -49,7 +48,7 @@ const ProductAdd = (props: ProductProps) => {
 
 
       }}>
-        <ImageUpload imageList={[]} />
+        <ImageUpload imageList={fileList} imagesCount={8} />
         <Form.Item name="name" label="Name" rules={[{ required: true, min: 5 }]} >
           <Input />
         </Form.Item>

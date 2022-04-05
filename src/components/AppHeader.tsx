@@ -83,7 +83,7 @@ const AppHeader = (props: Props) => {
           <li><ShoppingCartOutlined /></li>
           {userInfo && <li> <span style={{ textTransform: "capitalize" }}>Hi! {userInfo?.username}</span> </li>}
           <li><Dropdown overlay={menu} placement="bottom" arrow={{ pointAtCenter: true }}>
-            <Avatar src={<Image src="https://joeschmoe.io/api/v1/random" style={{ width: 32 }} />} />
+            <Avatar src={<Image src={userInfo?.image?.url ?? "https://joeschmoe.io/api/v1/random"} style={{ width: 32 }} />} />
           </Dropdown></li>
         </StyledNav>
       </StyledHeader >

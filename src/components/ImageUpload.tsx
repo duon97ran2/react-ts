@@ -4,7 +4,10 @@ import { PlusOutlined } from '@ant-design/icons';
 import { UploadFile } from 'antd/lib/upload/interface';
 import axios from 'axios';
 
-type Props = { imageList: UploadFile<any>[] }
+type Props = {
+  imageList: UploadFile<any>[],
+  imagesCount: number
+}
 
 
 const ImageUpload = (props: Props) => {
@@ -61,7 +64,6 @@ const ImageUpload = (props: Props) => {
       return;
     }
     setFileList(fileList);
-    console.log(fileList);
   };
   const handleCancel = () => {
     setPreviewVisible(false);
@@ -77,8 +79,8 @@ const ImageUpload = (props: Props) => {
 
   return (<>
     <Form.Item name='image' rules={[{ required: true }]} style={{ display: "flex", alignItems: "center", justifyContent: 'center' }} >
-      <Upload listType='picture-card' fileList={fileList} customRequest={dummyrequest} maxCount={8} onChange={handleChange} onPreview={handlePreview}>
-        {fileList.length >= 8 ? null : uploadButton}
+      <Upload listType='picture-card' fileList={fileList} customRequest={dummyrequest} maxCount={props.imagesCount} onChange={handleChange} onPreview={handlePreview}>
+        {fileList.length >= props.imagesCount ? null : uploadButton}
 
       </Upload>
     </Form.Item>

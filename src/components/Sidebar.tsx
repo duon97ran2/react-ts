@@ -28,11 +28,19 @@ const Sidebar = (props: Props) => {
           <Link to="dashboard">Dashboard</Link>
         </Menu.Item>
         <SubMenu key="products" icon={<ShopOutlined />} title="Products">
-          <Menu.Item key="list" icon={<BarsOutlined />}>
+          <Menu.Item key="productList" icon={<BarsOutlined />}>
             <Link to="products">Product List</Link>
           </Menu.Item>
-          <Menu.Item key="add" icon={<PlusCircleOutlined />}>
+          <Menu.Item key="addProduct" icon={<PlusCircleOutlined />}>
             <Link to="products/add">Add product</Link>
+          </Menu.Item>
+        </SubMenu>
+        <SubMenu key="users" icon={<UserOutlined />} title="Users">
+          <Menu.Item key="userList" icon={<BarsOutlined />}>
+            <Link to="users">User List</Link>
+          </Menu.Item>
+          <Menu.Item key="addUser" icon={<PlusCircleOutlined />}>
+            <Link to="users/add">Add user</Link>
           </Menu.Item>
         </SubMenu>
         <Menu.Item key="9" icon={<FileOutlined />}>
