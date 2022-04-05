@@ -1,7 +1,7 @@
 import { Avatar, Breadcrumb, Dropdown, Image, Layout, Menu, message } from 'antd'
 import React from 'react'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
-import { useAppDispatch } from '../app/hooks'
+import { useAppDispatch, useAppSelecter } from '../app/hooks'
 import Logo from '../components/Logo'
 import Sidebar from '../components/Sidebar'
 import { StyledHeader, StyledLogo, StyledNav } from '../components/StyleComponent'
@@ -13,6 +13,7 @@ const { Header, Content, Footer } = Layout
 
 const AdminLayout = (props: Props) => {
   const dispatch = useAppDispatch();
+  const { userInfo } = useAppSelecter(state => state.authReducer);
   const navigate = useNavigate();
   return (
     <Layout>

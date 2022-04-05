@@ -10,6 +10,7 @@ import {
   BarsOutlined,
   ShopOutlined,
   PlusCircleOutlined,
+  TagsOutlined,
 } from '@ant-design/icons';
 
 
@@ -41,6 +42,14 @@ const Sidebar = (props: Props) => {
           </Menu.Item>
           <Menu.Item key="addUser" icon={<PlusCircleOutlined />}>
             <Link to="users/add">Add user</Link>
+          </Menu.Item>
+        </SubMenu>
+        <SubMenu key="categories" icon={<TagsOutlined />} title="Categories">
+          <Menu.Item key="categoryList" icon={<BarsOutlined />}>
+            <Link to="categories">Category List</Link>
+          </Menu.Item>
+          <Menu.Item key="addCategory" icon={<PlusCircleOutlined />}>
+            <Link to="categories/add">Add category</Link>
           </Menu.Item>
         </SubMenu>
         <Menu.Item key="9" icon={<FileOutlined />}>

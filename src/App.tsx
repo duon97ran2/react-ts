@@ -26,6 +26,9 @@ import Search from './pages/client/Search'
 import UserList from './pages/admin/users/UserList'
 import UserAdd from './pages/admin/users/UserAdd'
 import UserUpdate from './pages/admin/users/UserUpdate'
+import CategoryAdd from './pages/admin/categories/CategoryAdd'
+import CategoryList from './pages/admin/categories/CategoryList'
+import CategoryEdit from './pages/admin/categories/CategoryEdit'
 
 
 
@@ -68,6 +71,11 @@ function App() {
               <Route index element={<ProductList />} />
               <Route path='add' element={<ProductAdd />} />
               <Route path=':id/edit' element={<ProductEdit />} />
+            </Route>
+            <Route path='categories'>
+              <Route index element={<CategoryList />} />
+              <Route path='add' element={<CategoryAdd />} />
+              <Route path=':id/edit' element={<CategoryEdit />} />
             </Route>
             <Route path='users'>
               <Route index element={<UserList />} />
