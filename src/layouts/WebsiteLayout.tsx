@@ -14,7 +14,7 @@ const WebsiteLayout = (props: Props) => {
   return (
     <div>
       <Layout className='layout'>
-        <Header>
+        <Header style={{ position: 'fixed', zIndex: 99, width: '100%' }}>
           <AppHeader />
         </Header>
         <Content style={{ padding: "0 50px" }}>

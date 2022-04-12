@@ -23,4 +23,7 @@ export const deleteProduct = (productId: string | undefined) => {
 
 export const search = (text: string) => {
   return fetchAPI.get(`search?q=${text}`)
+};
+export const fetchProductByCategory = (categoryId: string, filter: any) => {
+  return fetchAPI.get(`products/category/${categoryId}?range=${filter.range ?? ''}&order=${filter.date ?? ''}`);
 }

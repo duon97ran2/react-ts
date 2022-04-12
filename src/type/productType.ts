@@ -4,7 +4,9 @@ export type ProductType = {
   name: string,
   price: number,
   discount: number,
-  image: Object[],
+  image: Array<{
+    url: string
+  }>,
   description: string,
   slug: string,
   stock: number,

@@ -29,6 +29,9 @@ import UserUpdate from './pages/admin/users/UserUpdate'
 import CategoryAdd from './pages/admin/categories/CategoryAdd'
 import CategoryList from './pages/admin/categories/CategoryList'
 import CategoryEdit from './pages/admin/categories/CategoryEdit'
+import { AsyncFetchCart } from './features/cart/cartThunk'
+import Cart from './pages/client/Cart'
+import ProductCategory from './pages/client/ProductCategory'
 
 
 
@@ -41,13 +44,16 @@ const Loading = (
 
 
 function App() {
+  const { userInfo } = useAppSelecter(state => state.authReducer);
   const dispatch = useAppDispatch();
   useEffect(() => {
     dispatch(fetchAsyncProductList());
     dispatch(AsyncFetchCategoryList());
   }, [dispatch]);
-  const { userInfo } = useAppSelecter(state => state.authReducer);
-
+  useEffect(() => {
+    if (!userInfo) return
+    dispatch(AsyncFetchCart(userInfo._id));
+  }, [userInfo]);
   return (
     <Suspense fallback={Loading}>
       <BrowserRouter>
@@ -59,7 +65,12 @@ function App() {
               <Route index element={<Products />} />
               <Route path=':id' element={<ProductDetail />} />
             </Route>
+            <Route path='category' >
+              <Route index element={<ProductCategory />} />
+              <Route path=':text' element={<ProductCategory />} />
+            </Route>
             <Route path='search/:text' element={<Search />} />
+            <Route path='cart' element={<Cart />} />
           </Route>
           <Route path='login' element={<Login />} />
           <Route path='register' element={<Register />} />

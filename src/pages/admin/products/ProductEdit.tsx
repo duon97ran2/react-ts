@@ -42,7 +42,7 @@ const ProductEdit = (props: ProductProps) => {
   }, [isFetching])
   return (
     <>
-      <StyledActionTitle>Add New Product</StyledActionTitle>
+      <StyledActionTitle>Update Product</StyledActionTitle>
       <Form {...{ labelCol: { span: 6 }, wrapperCol: { span: 12 } }} name='Add product' onFinish={onFinishAdd} form={form} onFinishFailed={onFailedAdd} validateMessages={{
         required: '${label} is required',
         types: {
@@ -59,7 +59,7 @@ const ProductEdit = (props: ProductProps) => {
 
 
       }}>
-        <ImageUpload imageList={fileList} />
+        <ImageUpload imageList={fileList} imagesCount={8} />
         <Form.Item name="name" label="Name" rules={[{ required: true, min: 5 }]} >
           <Input />
         </Form.Item>

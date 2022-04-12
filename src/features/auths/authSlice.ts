@@ -1,4 +1,3 @@
-import { message } from 'antd';
 import { authAsyncRegister, authAsyncLogin } from './authThunk';
 import { createSlice } from '@reduxjs/toolkit';
 import { UserType } from './../../type/userType';
@@ -10,7 +9,7 @@ type AuthState = {
   errorMessage: string | undefined,
   accessToken: string,
 }
-const initialState = {
+const initialState: AuthState = {
   userInfo: null,
   isError: false,
   isAuthenticated: false,

@@ -54,6 +54,7 @@ display:flex;
 flex-direction:row;
 flex-shrink: 1; 
 cursor:pointer;
+
 & h2{
   font-weight:bold;
   font-size:30px;

@@ -1,12 +1,20 @@
-import { AsyncCreateProduct } from './productThunk';
 import { ProductType } from './../../type/productType';
-import { findAllProducts, createProduct, deleteProduct, findOneProduct, updateProduct, search } from './../../api/products';
+import { findAllProducts, createProduct, deleteProduct, findOneProduct, updateProduct, search, fetchProductByCategory } from './../../api/products';
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 export const fetchAsyncProductList = createAsyncThunk<ProductType[], void, { rejectValue: string }>("product/fetchAsyncProductList",
   async (_, { rejectWithValue }) => {
     try {
       const { data } = await findAllProducts();
+      return data;
+    } catch (error: any) {
+      return rejectWithValue(error.response.data.error);
+    }
+  });
+export const fetchAsyncProductByCategory = createAsyncThunk<ProductType[], { categoryId: string, filter: Array<any> }, { rejectValue: string }>("product/fetchAsyncProductByCategory",
+  async ({ categoryId, filter }, { rejectWithValue }) => {
+    try {
+      const { data } = await fetchProductByCategory(categoryId, filter);
       return data;
     } catch (error: any) {
       return rejectWithValue(error.response.data.error);

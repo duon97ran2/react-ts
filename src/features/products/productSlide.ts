@@ -1,4 +1,4 @@
-import { fetchAsyncProductList, AsyncCreateProduct, AsyncRemoveProduct, AsyncGetProduct, AsyncUpdateProduct, AsyncSearchProduct } from './productThunk';
+import { fetchAsyncProductList, AsyncCreateProduct, AsyncRemoveProduct, AsyncGetProduct, AsyncUpdateProduct, AsyncSearchProduct, fetchAsyncProductByCategory } from './productThunk';
 import { ProductType } from '../../type/productType';
 import { createSlice } from '@reduxjs/toolkit';
 
@@ -32,6 +32,26 @@ const productSlice = createSlice({
       state.products = action.payload;
     });
     builder.addCase(fetchAsyncProductList.rejected, (state, action) => {
+      state.isFetching = false;
+      state.errorMessage = action.payload;
+    });
+    builder.addCase(AsyncSearchProduct.pending, (state) => {
+      state.isFetching = true;
+    });
+    builder.addCase(AsyncSearchProduct.fulfilled, (state, action) => {
+      state.isFetching = false;
+    });
+    builder.addCase(AsyncSearchProduct.rejected, (state, action) => {
+      state.isFetching = false;
+      state.errorMessage = action.payload;
+    });
+    builder.addCase(fetchAsyncProductByCategory.pending, (state) => {
+      state.isFetching = true;
+    });
+    builder.addCase(fetchAsyncProductByCategory.fulfilled, (state, action) => {
+      state.isFetching = false;
+    });
+    builder.addCase(fetchAsyncProductByCategory.rejected, (state, action) => {
       state.isFetching = false;
       state.errorMessage = action.payload;
     });

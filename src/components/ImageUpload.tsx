@@ -48,6 +48,7 @@ const ImageUpload = (props: Props) => {
         }
       });
       file.url = data.url;
+      file.thumbUrl = null;
       onSuccess("ok");
     } catch (error) {
       onError({ error });

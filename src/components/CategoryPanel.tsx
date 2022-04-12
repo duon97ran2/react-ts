@@ -22,8 +22,8 @@ const CategoryPanel = (props: Props) => {
       navigation={true}
       modules={[Navigation]}
     >
-      {categories.map(item => <SwiperSlide>
-        <Card onClick={() => { navigate(`/categories/${item._id}`) }}
+      {categories.map((item, index) => <SwiperSlide key={index + 1}>
+        <Card onClick={() => { navigate(`/category/${item._id}`) }}
           hoverable
           style={{ width: "100%" }}
           cover={<img alt="example" src={item.image.url} />}

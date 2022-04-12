@@ -1,4 +1,5 @@
 import axios from "axios";
+import store from "../app/store";
 
 const root = JSON.parse(localStorage.getItem("persist:root") || "");
 const user = JSON.parse(root.authReducer);
@@ -10,10 +11,10 @@ const fetchAPI = axios.create({
     "Authorization": `Bearer ${user.accessToken}`,
   }
 });
+
 // fetchAPI.interceptors.request.use(
 //   async (config) => {
-//     const { accessToken } = useAppSelecter(state => state.authReducer);
-//     console.log(accessToken)
+//     const accessToken = store.getState().authReducer.accessToken;
 //     if (config.headers) {
 //       config.headers.Authorization = `Bearer ${accessToken}`;
 //     }

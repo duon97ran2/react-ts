@@ -15,7 +15,6 @@ const Logo = (props: Props) => {
   // }, []);
   const navigate = useNavigate();
   return (
-
     <StyledLogo onClick={() => { navigate("/") }}>
       <img src={BrandIcon} alt="" />
       <h2>SwitchIt!</h2>
