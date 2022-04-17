@@ -22,7 +22,7 @@ export const AsyncAddToCart = createAsyncThunk<CartType, addToCartType, { reject
   }
 
 });
-export const AsyncRemoveCartItem = createAsyncThunk<CartType, { id: string | undefined, productId: string }, { rejectValue: string }>("cart/AsyncRemoveCartItem", async (removeData, { rejectWithValue }) => {
+export const AsyncRemoveCartItem = createAsyncThunk<CartType, { id: string | undefined, productId: string | undefined }, { rejectValue: string }>("cart/AsyncRemoveCartItem", async (removeData, { rejectWithValue }) => {
   try {
     const { data } = await removeCartItem(removeData);
     return data;
@@ -46,7 +46,7 @@ export const AsyncIncreaseCartItem = createAsyncThunk<CartType, { id: string | u
     return rejectWithValue(error.response.data.message);
   }
 });
-export const AsyncDecreaseCartItem = createAsyncThunk<CartType, { id: string, productId: string }, { rejectValue: string }>("cart/AsyncDecreaseCartItem", async (requestData, { rejectWithValue }) => {
+export const AsyncDecreaseCartItem = createAsyncThunk<CartType, { id: string | undefined, productId: string | undefined }, { rejectValue: string }>("cart/AsyncDecreaseCartItem", async (requestData, { rejectWithValue }) => {
   try {
     const { data } = await decreaseCartItem(requestData);
     return data;

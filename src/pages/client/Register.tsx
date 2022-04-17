@@ -12,7 +12,7 @@ const Register = (props: Props) => {
   const onFinish = async (post: any) => {
     const { meta, payload } = await dispatch(authAsyncRegister(post));
     if (meta.requestStatus == "fulfilled") {
-      message.success(payload.message, 2, () => { navigate("/login") });
+      message.success("Register success", 2, () => { navigate("/login") });
     }
     else {
       message.error(payload);

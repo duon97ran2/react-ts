@@ -18,7 +18,7 @@ const ProductEdit = (props: ProductProps) => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
   const { categories } = useAppSelecter(state => state.categoryReducer);
-  const [form] = Form.useForm<ProductType>();
+  const [form] = Form.useForm();
   const product = products.find(item => item._id === id);
   const [fileList, setFileList] = useState<any>([]);
   const onReset = () => {

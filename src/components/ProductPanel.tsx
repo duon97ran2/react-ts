@@ -30,7 +30,7 @@ const ProductPanel = (props: Props) => {
       setNumber(3);
     }
   };
-  const addToCart = async (productId: string) => {
+  const addToCart = async (productId: string | undefined) => {
     if (userInfo) {
       const cartData = {
         productCart: {

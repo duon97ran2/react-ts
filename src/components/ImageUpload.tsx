@@ -55,7 +55,7 @@ const ImageUpload = (props: Props) => {
     }
   }
   const accepts = ["image/gif", "image/jpeg", "image/png"]
-  const handleChange = ({ fileList, file }) => {
+  const handleChange = ({ fileList, file }: { fileList: any; file: any }) => {
     const extensionFile = accepts.map((item) => item.split("image/")[1]);
     if (file.size / 1024 / 1024 > 2) {
       message.error("Image must be less than 2MB");

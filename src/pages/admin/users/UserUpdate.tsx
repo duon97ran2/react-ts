@@ -13,7 +13,7 @@ const UserUpdate = (props: Props) => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const { id } = useParams();
-  const [form] = Form.useForm<UserType>();
+  const [form] = Form.useForm();
   const { errorMessage, users, isFetching } = useAppSelecter(state => state.userReducer);
   const [fileList, setFileList] = useState<any>('');
   const user = users.find(item => item._id === id);

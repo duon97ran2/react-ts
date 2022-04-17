@@ -16,7 +16,6 @@ const { Meta } = Card;
 type Props = {}
 
 const Search = (props: Props) => {
-  console.profile("Start")
   const { categories } = useAppSelecter(state => state.categoryReducer);
   const { isFetching } = useAppSelecter(state => state.productReducer);
   const dispatch = useAppDispatch();
@@ -30,7 +29,6 @@ const Search = (props: Props) => {
       }
     }
   }, [isFetching]);
-  console.profileEnd("Start")
   return (<>
     <h1>Search result for {text}</h1>
     <ProductPanel data={data} start={3} />

@@ -8,6 +8,12 @@ import { ProductType } from '../../../type/productType';
 import { UserType } from '../../../type/userType';
 
 type Props = {}
+type Column = {
+  title: string,
+  dataIndex: string,
+  key: string,
+  render?: (text: string, record: any) => JSX.Element
+};
 
 const UserList = (props: Props) => {
   const { users, errorMessage, isFetching } = useAppSelecter(state => state.userReducer);
@@ -16,7 +22,7 @@ const UserList = (props: Props) => {
   useEffect(() => {
     dispatch(AsyncFetchUserList());
   }, [dispatch]);
-  const columns = [
+  const columns: Column[] = [
     {
       title: 'Username',
       dataIndex: 'username',
@@ -27,7 +33,7 @@ const UserList = (props: Props) => {
       title: 'Avatar',
       dataIndex: 'image',
       key: 'image',
-      render: (text: String, record: ProductType) => <img width="200px" src={record.image ? record.image.url : ""} alt="" />
+      render: (text: String, record: UserType) => <img width="200px" src={record.image ? record.image.url : ""} alt="" />
     },
     {
       title: 'Email',
@@ -40,9 +46,9 @@ const UserList = (props: Props) => {
       key: 'role',
       render: (_: any, record: UserType) => <span>{record.role === 0 ? "member" : "admin"}</span>
     },
-
     {
       title: 'Action',
+      dataIndex: "action",
       key: 'action',
       render: (_: any, record: UserType) => (
         <Space size="middle">

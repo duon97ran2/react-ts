@@ -2,7 +2,7 @@ import { CategoryType } from './../../type/categoryType';
 import { createCategory, removeCategory, updateCategory } from './../../api/category';
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { getCategories } from '../../api/category';
-import { CategoryType } from '../../type/categoryType';
+
 
 export const AsyncFetchCategoryList = createAsyncThunk<CategoryType[], void, { rejectValue: string }>("category/AsyncFecthCategoryList", async (_, { rejectWithValue }) => {
 

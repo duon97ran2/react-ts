@@ -13,7 +13,7 @@ export const authAsyncRegister = createAsyncThunk<{ message: string, user: { use
   }
 
 });
-export const authAsyncLogin = createAsyncThunk<{ message: string, token: string, user: UserType | null }, LoginType, { rejectValue: string }>("auth/authAsyncLogin", async (loginData, { rejectWithValue }) => {
+export const authAsyncLogin = createAsyncThunk<{ message: string | undefined, token: string, user: UserType | null }, LoginType, { rejectValue: string }>("auth/authAsyncLogin", async (loginData, { rejectWithValue }) => {
   try {
     const { data } = await login(loginData);
     return data;

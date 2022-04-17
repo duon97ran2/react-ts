@@ -1,5 +1,3 @@
-import { message } from 'antd';
-import { message } from 'antd';
 import { createUser, getUserList, removeUser, updateUser } from './../../api/users';
 import { UserType } from './../../type/userType';
 import { createAsyncThunk } from '@reduxjs/toolkit';
@@ -13,7 +11,7 @@ export const AsyncFetchUserList = createAsyncThunk<UserType[], void, { rejectVal
       return rejectWithValue(error.response.data.message);
     }
   });
-export const AsyncCreateUser = createAsyncThunk<UserType, UserType, { rejectValue: string }>("user/AsyncCreateUser", async (userData, { rejectWithValue }) => {
+export const AsyncCreateUser = createAsyncThunk<{ user: UserType, message: string }, UserType, { rejectValue: string }>("user/AsyncCreateUser", async (userData, { rejectWithValue }) => {
   try {
     const { data } = await createUser(userData);
     return data

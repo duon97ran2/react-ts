@@ -11,7 +11,7 @@ export const fetchAsyncProductList = createAsyncThunk<ProductType[], void, { rej
       return rejectWithValue(error.response.data.error);
     }
   });
-export const fetchAsyncProductByCategory = createAsyncThunk<ProductType[], { categoryId: string, filter: Array<any> }, { rejectValue: string }>("product/fetchAsyncProductByCategory",
+export const fetchAsyncProductByCategory = createAsyncThunk<ProductType[], { categoryId: string, filter?: Array<any> }, { rejectValue: string }>("product/fetchAsyncProductByCategory",
   async ({ categoryId, filter }, { rejectWithValue }) => {
     try {
       const { data } = await fetchProductByCategory(categoryId, filter);

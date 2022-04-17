@@ -15,7 +15,7 @@ const Login = (props: Props) => {
     const { meta, payload } = await dispatch(authAsyncLogin(post));
     console.log(meta, payload);
     if (meta.requestStatus == "fulfilled") {
-      message.success(payload.message, 2, () => {
+      message.success("Login success", 2, () => {
         navigate("/");
       })
     }

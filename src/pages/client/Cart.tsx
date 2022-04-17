@@ -60,8 +60,9 @@ const Cart = (props: Props) => {
     },
     {
       title: 'Action',
+      dataIndex: 'action',
       key: 'action',
-      render: (_: any, record: CartType) => (
+      render: (_: any, record: any) => (
         <Space size="middle">
           <Popconfirm title="Remove this product？" okText="Yes" onConfirm={() => { confirmDelete({ productId: record.id, id: cart?._id }) }} cancelText="No">
             <Button type='primary' danger>Remove</Button>
@@ -74,13 +75,13 @@ const Cart = (props: Props) => {
     dispatch(AsyncRemoveCartItem(removeData)).unwrap().then((data) => { message.success("Remove item success") }).catch((error) => { errorMessage ? message.error(errorMessage) : message.error(error.message) });
   };
   const increaseItem = (requestData: RequestType) => {
-    const cartItem: any = cart?.products.find(item => item.productId._id == requestData.productId);
+    const cartItem: any = cart?.products.find((item: any) => item.productId._id == requestData.productId);
     if (cartItem?.quantity < cartItem?.productId.stock) {
       dispatch(AsyncIncreaseCartItem(requestData)).unwrap().catch((error: any) => { errorMessage ? message.error(errorMessage) : message.error(error.message) });
     }
   };
   const decreaseItem = (requestData: RequestType) => {
-    const cartItem = cart?.products.find((item: any) => item.productId._id == requestData.productId);
+    const cartItem: any = cart?.products.find((item: any) => item.productId._id == requestData.productId);
     if (cartItem?.quantity > 1) {
       dispatch(AsyncDecreaseCartItem(requestData)).unwrap().catch((error: any) => { errorMessage ? message.error(errorMessage) : message.error(error.message) });
     }

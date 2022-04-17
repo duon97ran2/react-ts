@@ -18,6 +18,7 @@ const UserAdd = (props: Props) => {
   const onFinishAdd = async (post: UserType) => {
     post.image = post.image.file;
     dispatch(AsyncCreateUser(post)).unwrap().then((data) => {
+      console.log(data);
       message.success(data.message, 2, () => { navigate("/admin/users") })
     }).catch((error) => { errorMessage ? message.error(errorMessage) : message.error(error.message) });
   };

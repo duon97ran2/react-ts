@@ -28,7 +28,7 @@ const ImageThumbSwiper = (props: Props) => {
   //     setImages(props.image);
   // }
   //   , [isFetching])
-  const images = props.image ? props.image.map(item => ({
+  const images: any = props.image ? props.image.map(item => ({
     original: item.url,
     thumbnail: item.url,
     originalHeight: "500px",

@@ -1,10 +1,12 @@
 import { ArrowLeftOutlined, ArrowRightOutlined, EyeOutlined, HeartOutlined, LeftOutlined, RightOutlined, ShoppingCartOutlined } from '@ant-design/icons';
-import { Button, Card, Carousel, Col, Form, Grid, InputNumber, message, Rate, Row, Space } from 'antd';
-import React, { useState } from 'react'
+import { Button, Card, Carousel, Col, Form, Grid, InputNumber, message, Rate, Row, Space, Tabs } from 'antd';
+import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { useAppDispatch, useAppSelecter } from '../../app/hooks';
 import ImageThumbSwiper from '../../components/ImageThumbSwiper';
 import { AsyncAddToCart } from '../../features/cart/cartThunk';
+import { fetchAsyncProductByCategory } from '../../features/products/productThunk';
+const { TabPane } = Tabs;
 
 type Props = {}
 
@@ -13,7 +15,7 @@ const ProductDetail = (props: Props) => {
     if (x && y) return (x * (1 - y / 100)).toFixed(2);
 
   }
-  const [activeTabKey2, setActiveTabKey2] = useState<any>('app');
+  const [activeTabKey2, setActiveTabKey2] = useState('app');
   const onTab2Change = (key: any) => {
     setActiveTabKey2(key);
   };
@@ -31,12 +33,8 @@ const ProductDetail = (props: Props) => {
     },
   ];
   const { id } = useParams();
-  const { products } = useAppSelecter(state => state.productReducer);
+  const { products, isFetching } = useAppSelecter(state => state.productReducer);
   const product = products.find(item => item._id === id);
-  const contentListNoTitle = {
-    related: <p>app content</p>,
-    description: <p>{product?.description}</p>,
-  };
   const finishSuccess = (post: any) => {
     if (userInfo) {
       const cartData = {
@@ -77,17 +75,19 @@ const ProductDetail = (props: Props) => {
           </div>
         </Col>
       </Row>
-      <Card
-        style={{ width: '100%' }}
-        tabList={tabListNoTitle}
-        activeTabKey={activeTabKey2}
-        tabBarExtraContent={<a href="#">More</a>}
-        onTabChange={key => {
-          onTab2Change(key);
-        }}
-      >
-        {contentListNoTitle[activeTabKey2]}
-      </Card>
+
+      <Tabs defaultActiveKey="1" style={{ marginTop: "20px" }}>
+        <TabPane tab="Description" key="1" style={{ height: 200 }}>
+          <p>{product?.description}</p>
+        </TabPane>
+        <TabPane tab="Related Product" key="2">
+          Content of Tab Pane 2
+        </TabPane>
+        <TabPane tab="Comment" key="3">
+          Content of Tab Pane 3
+        </TabPane>
+      </Tabs>
+
     </>
   )
 }
