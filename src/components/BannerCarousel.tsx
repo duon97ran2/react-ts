@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import { LeftOutlined, RightOutlined } from '@ant-design/icons'
 import { Carousel } from 'antd'
 import { StyledButton } from './StyleComponent'

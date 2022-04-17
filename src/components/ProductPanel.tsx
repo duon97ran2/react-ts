@@ -81,7 +81,8 @@ const ProductPanel = (props: Props) => {
 
         </Row>
         <div style={{ display: "flex", justifyContent: "center", margin: "20px" }}>
-          {(data.length > 3) && <StyledButton onClick={loadMore} style={{ border: "2px solid var(--ant-primary-color)" }}  >{number < data.length ? "Load More" : "Hide"}</StyledButton>}</div>
+          {data.length === 0 && <h1>No result found</h1>}
+          {data && (data.length > 3) && <StyledButton onClick={loadMore} style={{ border: "2px solid var(--ant-primary-color)" }}  >{number < data.length ? "Load More" : "Hide"}</StyledButton>}</div>
       </div >
     </div >
   )

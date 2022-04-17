@@ -12,8 +12,8 @@ import { OrderSend } from '../../type/orderType';
 import { ProductType } from '../../type/productType';
 type Props = {}
 type RequestType = {
-  id: string,
-  productId: string
+  id: string | undefined,
+  productId: string | undefined
 }
 
 const Cart = (props: Props) => {
@@ -64,7 +64,7 @@ const Cart = (props: Props) => {
       render: (_: any, record: CartType) => (
         <Space size="middle">
           <Popconfirm title="Remove this product？" okText="Yes" onConfirm={() => { confirmDelete({ productId: record.id, id: cart?._id }) }} cancelText="No">
-            <Button type='danger'>Remove</Button>
+            <Button type='primary' danger>Remove</Button>
           </Popconfirm>
         </Space>
       ),
@@ -74,15 +74,15 @@ const Cart = (props: Props) => {
     dispatch(AsyncRemoveCartItem(removeData)).unwrap().then((data) => { message.success("Remove item success") }).catch((error) => { errorMessage ? message.error(errorMessage) : message.error(error.message) });
   };
   const increaseItem = (requestData: RequestType) => {
-    const cartItem = cart?.products.find(item => item.productId._id == requestData.productId);
+    const cartItem: any = cart?.products.find(item => item.productId._id == requestData.productId);
     if (cartItem?.quantity < cartItem?.productId.stock) {
-      dispatch(AsyncIncreaseCartItem(requestData)).unwrap().catch((error) => { errorMessage ? message.error(errorMessage) : message.error(error.message) });
+      dispatch(AsyncIncreaseCartItem(requestData)).unwrap().catch((error: any) => { errorMessage ? message.error(errorMessage) : message.error(error.message) });
     }
   };
   const decreaseItem = (requestData: RequestType) => {
     const cartItem = cart?.products.find((item: any) => item.productId._id == requestData.productId);
     if (cartItem?.quantity > 1) {
-      dispatch(AsyncDecreaseCartItem(requestData)).unwrap().catch((error) => { errorMessage ? message.error(errorMessage) : message.error(error.message) });
+      dispatch(AsyncDecreaseCartItem(requestData)).unwrap().catch((error: any) => { errorMessage ? message.error(errorMessage) : message.error(error.message) });
     }
   };
   const confirmClear = (clearData: { id: string | undefined }) => {
@@ -113,7 +113,7 @@ const Cart = (props: Props) => {
   }
   const finishFailed = () => {
     message.error("Please fill up all required field before checkout");
-  }
+  };
   return (
     <>
       <Row gutter={20} >

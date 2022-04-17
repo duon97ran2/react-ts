@@ -35,8 +35,10 @@ const CategoryEdit = (props: Props) => {
   };
   useEffect(() => {
     if (!isFetching) {
-      form.setFieldsValue(category);
-      setFileList(category?.image);
+      if (category) {
+        form.setFieldsValue(category);
+        setFileList(category?.image);
+      }
     }
   }, [isFetching])
   return (

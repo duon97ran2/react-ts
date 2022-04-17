@@ -1,6 +1,9 @@
 export type CategoryType = {
   _id?: string,
   name: string,
-  image: Object,
+  image: {
+    url: string,
+    file: any,
+  },
   createdAt: Date;
 }

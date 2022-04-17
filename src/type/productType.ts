@@ -5,11 +5,11 @@ export type ProductType = {
   price: number,
   discount: number,
   image: Array<{
-    url: string
+    url: string,
   }>,
   description: string,
   slug: string,
   stock: number,
   view: number,
-  category: Array<CategoryType>
+  category: CategoryType
 }

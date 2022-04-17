@@ -22,7 +22,7 @@ const ProductAdd = (props: ProductProps) => {
     form.resetFields();
     setFileList([]);
   };
-  const onFinishAdd = (post: ProductType) => {
+  const onFinishAdd = (post: any) => {
     post.image = post.image.fileList;
     dispatch(AsyncCreateProduct(post)).unwrap().then(() => { message.success("Add product success", 2, () => { navigate("/admin/products") }) }).catch((error) => errorMessage ? message.error(errorMessage) : message.error(error.message));
   };

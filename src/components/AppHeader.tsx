@@ -68,7 +68,7 @@ const AppHeader = (props: Props) => {
       <StyledHeader  >
         <StyledLogo onClick={() => { navigate("/") }}>
           <img src={BrandIcon} alt="" />
-          <h2>SwitchIt!</h2>
+          <h2>Switch!</h2>
         </StyledLogo>
         <Menu theme="light" mode="horizontal" defaultSelectedKeys={['1']}>
           {pageLink.map((page, index) => {

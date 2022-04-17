@@ -16,6 +16,7 @@ const { Meta } = Card;
 type Props = {}
 
 const Search = (props: Props) => {
+  console.profile("Start")
   const { categories } = useAppSelecter(state => state.categoryReducer);
   const { isFetching } = useAppSelecter(state => state.productReducer);
   const dispatch = useAppDispatch();
@@ -23,10 +24,13 @@ const Search = (props: Props) => {
   const { text } = useParams();
   const [data, setData] = useState<any>([]);
   useEffect(() => {
-    if (!isFetching) {
-      dispatch(AsyncSearchProduct(text)).then((data) => { setData(data.payload) });
+    if (text) {
+      if (!isFetching) {
+        dispatch(AsyncSearchProduct(text)).then((data) => { setData(data.payload) });
+      }
     }
   }, [isFetching]);
+  console.profileEnd("Start")
   return (<>
     <h1>Search result for {text}</h1>
     <ProductPanel data={data} start={3} />

@@ -5,7 +5,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import { CartType } from '../../type/cartType';
 
 
-export const AsyncFetchCart = createAsyncThunk<CartType, string, { rejectValue: string }>("cart/AsyncFetchCart", async (userId, { rejectWithValue }) => {
+export const AsyncFetchCart = createAsyncThunk<CartType, string | undefined, { rejectValue: string }>("cart/AsyncFetchCart", async (userId, { rejectWithValue }) => {
   try {
     const { data } = await getCart(userId);
     return data;
@@ -22,7 +22,7 @@ export const AsyncAddToCart = createAsyncThunk<CartType, addToCartType, { reject
   }
 
 });
-export const AsyncRemoveCartItem = createAsyncThunk<CartType, { id: string, productId: string }, { rejectValue: string }>("cart/AsyncRemoveCartItem", async (removeData, { rejectWithValue }) => {
+export const AsyncRemoveCartItem = createAsyncThunk<CartType, { id: string | undefined, productId: string }, { rejectValue: string }>("cart/AsyncRemoveCartItem", async (removeData, { rejectWithValue }) => {
   try {
     const { data } = await removeCartItem(removeData);
     return data;
@@ -38,7 +38,7 @@ export const AsyncClearCart = createAsyncThunk<CartType, { id: string | undefine
     return rejectWithValue(error.response.data.message);
   }
 });
-export const AsyncIncreaseCartItem = createAsyncThunk<CartType, { id: string, productId: string }, { rejectValue: string }>("cart/AsyncIncreaseCartItem", async (requestData, { rejectWithValue }) => {
+export const AsyncIncreaseCartItem = createAsyncThunk<CartType, { id: string | undefined, productId: string | undefined }, { rejectValue: string }>("cart/AsyncIncreaseCartItem", async (requestData, { rejectWithValue }) => {
   try {
     const { data } = await increaseCartItem(requestData);
     return data;

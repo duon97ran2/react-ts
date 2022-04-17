@@ -29,10 +29,7 @@ const ProductCategory = (props: Props) => {
   };
   useEffect(() => {
     if (!isFetching) {
-      if (text) {
-        dispatch(fetchAsyncProductByCategory({ categoryId: text, filter: filter })).then((data) => { setData(data.payload) });
-      }
-      else setData(products);
+      dispatch(fetchAsyncProductByCategory({ categoryId: text ?? "all", filter: filter })).then((data) => { setData(data.payload) });
     }
   }, [isFetching]);
   return (<>

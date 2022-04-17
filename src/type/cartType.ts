@@ -14,8 +14,8 @@ export type CartType = {
 
 export type addToCartType = {
   productCart: {
-    productId: string,
+    productId: string | undefined,
     quantity: number,
   },
-  userId: string
+  userId: string | undefined
 }
