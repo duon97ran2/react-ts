@@ -1,8 +1,11 @@
 import axios from "axios";
 import store from "../app/store";
 
+
 const root = JSON.parse(localStorage.getItem("persist:root") || "");
-const user = JSON.parse(root.authReducer);
+const user = JSON.parse(root.authReducer || "");
+
+
 
 const fetchAPI = axios.create({
   baseURL: "https://nodejs-express-duon97ran2.vercel.app/api/",
